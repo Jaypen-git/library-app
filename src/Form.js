@@ -1,4 +1,8 @@
 const Form = () => {
+    const handleClick = (e) => {
+        let subBtn = e.target;
+        console.log(subBtn);
+    }
     return ( 
         <div className="bookForm">
             <label htmlFor="title">Title: </label>
@@ -11,7 +15,7 @@ const Form = () => {
                 <label htmlFor="status">I have read this book</label>
                 <input type="checkbox" name="status" id="status" />
             </div>
-            <input type="submit" value="Submit" id="submit" />
+            <input type="submit" value="Submit" id="submit" onClick={handleClick} />
         </div>
     );
 }
