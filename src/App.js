@@ -1,13 +1,15 @@
 import './App.css';
 import Form from './Form';
+import Home from './Home';
+import Header from './Header';
 
 function App() {
-  const title = 'Library Application'
   return (
     <div className="App">
-      <Form />
+      <Header />
       <div className='content'>
-        <h1>{title}</h1>
+        <Form />
+        <Home />
       </div>
     </div>
   );
