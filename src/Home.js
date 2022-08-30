@@ -1,30 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BookList from "./BookList";
 
 const Home = () => {
-    const [books, setBooks] = useState([
-        { id: 1, title: 'Book 1', author: 'Author 1', pages: 300, status: 'Read'},
-        { id: 2, title: 'Book 2', author: 'Author 2', pages: 280, status: 'Read'},
-        { id: 3, title: 'Book 3', author: 'Author 3', pages: 330, status: 'Unread'}
-    ])
-    const handleDelete = (id) => {
-        const update = books.filter(book => book.id !== id); // this returns a new array that excludes books with the given id
-        setBooks(update); // updates the state of book list on DOM
-    }
+    const [books, setBooks] = useState(null);
+    const [isPending, setIsPending] = useState(true)
 
+    useEffect(() => { // useEffect runs a function on every render
+        setTimeout(() => {
+            fetch('http://localhost:8000/library')
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error("Couldn't fetch the data");
+                }
+                return res.json();
+            })
+            .then(data => {
+                setBooks(data);
+                setIsPending(false);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }, 1000);
+    }, []); // useEffect dependencies are triggers for useEffect to run. If left empty, it will only run initially
+    
     return ( 
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Pages</th>
-                    <th>Read?</th>
-                </tr>
-            </thead>
+        <div className="content">
+            {isPending && <div>Loading...</div>}
             {/* reusable component for outputting a book list, passes down booklist and handle delete function as props */}
-            <BookList books={ books } handleDelete={ handleDelete }/> 
-        </table>
+            {books && <BookList books={ books }/>}
+        </div>
      );
 }
  
