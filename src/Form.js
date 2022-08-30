@@ -1,20 +1,24 @@
+import { useState } from "react";
+
 const Form = () => {
-    const handleClick = (e) => {
-        let subBtn = e.target;
-        console.log(subBtn);
-    }
+    const [title, setTitle] = useState('');
+    const [author, setAuthor] = useState('');
+    const [pages, setPages] = useState('');
+    const [status, setStatus] = useState('');
+
     return ( 
         <div className="bookForm">
             <label htmlFor="title">Title: </label>
-            <input type="text" name="title" id="title" />
+            <input type="text" required value={title} onChange={e => setTitle(e.target.value)} id="title"/>
             <label htmlFor="author">Author: </label>
-            <input type="text" name="author" id="author" />
+            <input type="text" required value={author} onChange={e => setAuthor(e.target.value)} id="author" />
             <label htmlFor="pages">Pages: </label>
-            <input type="text" name="pages" id="pages" />
-            <div className="stat-container">
-                <label htmlFor="status">I have read this book</label>
-                <input type="checkbox" name="status" id="status" />
-            </div>
+            <input type="text" required value={pages} onChange={e => setPages(e.target.value)} id="pages" />
+            <label htmlFor="status">I have </label>
+            <select name="status" required value={status} onChange={e =>  setStatus(e.target.value)} id="status">
+                <option value="Read">read this book</option>
+                <option value="Unread">not read this book</option>
+            </select>
             <input type="submit" value="Submit" id="submit" onClick={handleClick} />
         </div>
     );
