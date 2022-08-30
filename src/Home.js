@@ -1,32 +1,8 @@
-import { useState, useEffect } from "react";
+import useFetch from "./useFetch";
 import BookList from "./BookList";
 
 const Home = () => {
-    const [books, setBooks] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => { // useEffect runs a function on every render
-        setTimeout(() => {
-            fetch('http://localhost:8000/library')
-            .then(res => {
-                if (!res.ok) {
-                    throw Error("Couldn't fetch the data");
-                }
-                return res.json();
-            })
-            .then(data => {
-                setBooks(data);
-                setIsPending(false);
-                setError(null);
-            })
-            .catch(err => {
-                setIsPending(false);
-                setError(err.message);
-            })
-        }, 1000);
-    }, []); // useEffect dependencies are triggers for useEffect to run. If left empty, it will only run initially
-    
+    const {data: books, isPending, error} = useFetch('http://localhost:8000/library');
     return ( 
         <div className="content">
             { error && <div>Could not fetch the data</div>}
