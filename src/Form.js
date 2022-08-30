@@ -6,8 +6,14 @@ const Form = () => {
     const [pages, setPages] = useState('');
     const [status, setStatus] = useState('');
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        const book = { title, author, pages, status };
+        console.log(book);
+    }
+
     return ( 
-        <div className="bookForm">
+        <form className="bookForm" onSubmit={handleSubmit}>
             <label htmlFor="title">Title: </label>
             <input type="text" required value={title} onChange={e => setTitle(e.target.value)} id="title"/>
             <label htmlFor="author">Author: </label>
@@ -19,8 +25,8 @@ const Form = () => {
                 <option value="Read">read this book</option>
                 <option value="Unread">not read this book</option>
             </select>
-            <input type="submit" value="Submit" id="submit" onClick={handleClick} />
-        </div>
+            <button type="submit">Add Book</button>
+        </form>
     );
 }
  
