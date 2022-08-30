@@ -4,11 +4,10 @@ const Form = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [pages, setPages] = useState('');
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState('Read');
     const [isPending, setIsPending] = useState(false);
 
     const handleSubmit = e => {
-        e.preventDefault();
         const book = { title, author, pages, status };
 
         setIsPending(true);
