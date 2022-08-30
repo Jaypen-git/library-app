@@ -8,28 +8,26 @@ const useFetch = (url) => {
     useEffect(() => { // useEffect runs a function on every render
         const abortCont = new AbortController(); //this aborts an attempt to fetch data
 
-        setTimeout(() => {
-            fetch(url, { signal: abortCont.signal })
-            .then(res => {
-                if (!res.ok) {
-                    throw Error("Couldn't fetch the data");
-                }
-                return res.json();
-            })
-            .then(data => {
-                setData(data);
+        fetch(url, { signal: abortCont.signal })
+        .then(res => {
+            if (!res.ok) {
+                throw Error("Couldn't fetch the data");
+            }
+            return res.json();
+        })
+        .then(data => {
+            setData(data);
+            setIsPending(false);
+            setError(null);
+        })
+        .catch(err => {
+            if (err.name === 'AbortError') {
+                console.log('fetch aborted');
+            } else {
                 setIsPending(false);
-                setError(null);
-            })
-            .catch(err => {
-                if (err.name === 'AbortError') {
-                    console.log('fetch aborted');
-                } else {
-                    setIsPending(false);
-                    setError(err.message);
-                }
-            });
-        }, 1000);
+                setError(err.message);
+            }
+        });
 
         return () => abortCont.abort();
     }, [url]); // useEffect dependencies are triggers for useEffect to run. If left empty, it will only run initially

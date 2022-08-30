@@ -5,11 +5,22 @@ const Form = () => {
     const [author, setAuthor] = useState('');
     const [pages, setPages] = useState('');
     const [status, setStatus] = useState('');
+    const [isPending, setIsPending] = useState(false);
 
     const handleSubmit = e => {
         e.preventDefault();
         const book = { title, author, pages, status };
-        console.log(book);
+
+        setIsPending(true);
+
+        fetch('http://localhost:8000/library', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(book)
+        }).then(() => {
+            console.log('added');
+            setIsPending(false);
+        })
     }
 
     return ( 
@@ -25,7 +36,8 @@ const Form = () => {
                 <option value="Read">read this book</option>
                 <option value="Unread">not read this book</option>
             </select>
-            <button type="submit">Add Book</button>
+            { !isPending && <button type="submit">Add Book</button>}
+            { isPending && <button disabled>Adding Book</button>}
         </form>
     );
 }
