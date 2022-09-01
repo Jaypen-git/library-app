@@ -5,9 +5,9 @@ import Header from './Header';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App h-screen text-gray-700">
       <Header />
-      <div className='content'>
+      <div className='flex'>
         <Form />
         <Home />
       </div>

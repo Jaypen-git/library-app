@@ -1,6 +1,9 @@
 const Header = () => {
     return ( 
-        <h1 className="text-red-400">Library Application</h1>
+        <header className="bg-red-400 p-4 flex items-center justify-center">
+            <img src={require("./images/library-shelves.png")} alt="library-icon" className="pr-3"/>
+            <h1 className="text-gray-100 text-4xl font-bold">Library Application</h1>
+        </header>
      );
 }
  
