@@ -5,9 +5,10 @@ import Header from './Header';
 
 function App() {
   return (
-    <div className="App h-screen text-gray-700">
+    <div className="App h-screen text-gray-700 text-lg">
       <Header />
-      <div className='flex'>
+      <div>
+        {/* Need to use react router to make a mobile menu */}
         <Form />
         <Home />
       </div>

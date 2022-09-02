@@ -15,11 +15,11 @@
       "status": "Read"
     },
     {
-      "id": 3,
       "title": "Book 3",
       "author": "Author 3",
-      "pages": 330,
-      "status": "Unread"
+      "pages": "310",
+      "status": "Read",
+      "id": 3
     }
   ]
 }
