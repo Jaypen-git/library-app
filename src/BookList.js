@@ -9,23 +9,27 @@ const BookList = ({books}) => {
     }
 
     return ( 
-        <table>
+        <table className="text-base text-center">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Pages</th>
-                    <th>Read?</th>
+                    <th className="px-3 py-1">Title</th>
+                    <th className="px-3 py-1">Author</th>
+                    <th className="px-3 py-1">Pages</th>
+                    <th className="px-3 py-1">Read?</th>
                 </tr>
             </thead>
             <tbody>
                 {books.map(book => (
                     <tr key={ book.id } id={book.id}>
-                        <td>{ book.title }</td>
-                        <td>{ book.author }</td>
-                        <td>{ book.pages }</td>
-                        <td><button>{ book.status }</button></td>
-                        <td><button onClick={e => {handleDelete(e.target.parentNode.parentNode.id)}}>Delete</button></td>
+                        <td className="px-3 py-1">{ book.title }</td>
+                        <td className="px-3 py-1">{ book.author }</td>
+                        <td className="px-3 py-1">{ book.pages }</td>
+                        <td className="px-3 py-1"><button>{ book.status }</button></td>
+                        <td>
+                            <button className="bg-red-600 text-gray-100 p-2 rounded" onClick={e => {handleDelete(e.target.parentNode.parentNode.id)}}>
+                                <img src={require("./images/delete.png")} alt="delete" className="w-6" />
+                            </button>
+                        </td>
                     </tr>
                 ))}
             </tbody>

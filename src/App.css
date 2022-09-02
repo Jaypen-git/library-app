@@ -9,3 +9,7 @@
 .content {
   flex: 5;
 }
+
+table {
+  margin: 20px auto;
+}

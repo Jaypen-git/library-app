@@ -33,7 +33,7 @@ const Form = () => {
 
     return ( 
     <div>
-        <img src={ visible ? require("./images/window-close.png") : require("./images/menu.png")} alt="close" className="w-9 absolute top-3 right-3 z-20" onClick={handleClick}/>
+        <img src={ visible ? require("./images/window-close.png") : require("./images/menu.png")} alt="close" className="w-11 absolute top-4 right-4 z-20" onClick={handleClick}/>
         <form className={visible ? "bookForm bg-gray-200 p-5 z-10 h-screen w-screen absolute top-0 flex flex-col justify-center" : "hidden"} onSubmit={handleSubmit}>
             <label htmlFor="title" className="block mb-2 text-xl">Title: </label>
             <input type="text" className="block mb-2 p-1 rounded-sm" required value={title} onChange={e => setTitle(e.target.value)} id="title"/>
@@ -46,7 +46,7 @@ const Form = () => {
                 <option value="Read">I have read this book</option>
                 <option value="Unread">I have not read this book</option>
             </select>
-            { !isPending && <button type="submit" className="p-2 bg-gray-700 text-gray-100 rounded-sm mt-6 w-7/12 self-center">Add Book</button>}
+            { !isPending && <button type="submit" className="p-2 bg-blue-400 text-gray-100 rounded-sm mt-6 w-7/12 self-center">Add Book</button>}
             { isPending && <button disabled>Adding Book</button>}
         </form>
     </div>
