@@ -13,13 +13,6 @@
       "author": "Author 2",
       "pages": 280,
       "status": "Read"
-    },
-    {
-      "title": "Book 3",
-      "author": "Author 3",
-      "pages": "310",
-      "status": "Read",
-      "id": 3
     }
   ]
 }
