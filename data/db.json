@@ -9,10 +9,24 @@
     },
     {
       "id": 2,
-      "title": "Book 2",
+      "title": "Book 2 Revised",
       "author": "Author 2",
-      "pages": 280,
-      "status": "Read"
+      "pages": "270",
+      "status": "Unread"
+    },
+    {
+      "title": "Book 3",
+      "author": "Author 3",
+      "pages": "280",
+      "status": "Unread",
+      "id": 3
+    },
+    {
+      "title": "Book 4",
+      "author": "Author 4",
+      "pages": "370",
+      "status": "Read",
+      "id": 4
     }
   ]
 }

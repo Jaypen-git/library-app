@@ -3,6 +3,7 @@ import Form from './Form';
 import Home from './Home';
 import Header from './Header';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import EditBook from './EditBook';
 
 function App() {
   return (
@@ -16,7 +17,10 @@ function App() {
                 <Home />
               </Route>
               <Route path="/form">
-                <Form />
+                <Form url={'http://localhost:8000/library'} method={'POST'}/>
+              </Route>
+              <Route path="/edit/:id">
+                <EditBook />
               </Route>
             </Switch>
           </div>

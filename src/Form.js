@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Form = () => {
+const Form = ({ url, method }) => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [pages, setPages] = useState('');
     const [status, setStatus] = useState('Read');
     const [isPending, setIsPending] = useState(false);
 
-    const handleSubmit = e => {
+    const handleSubmit = () => {
         const book = { title, author, pages, status };
 
         setIsPending(true);
 
-        fetch('http://localhost:8000/library', {
-            method: 'POST',
+        fetch(url, {
+            method: method,
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(book)
         }).then(() => {
@@ -30,7 +30,10 @@ const Form = () => {
                 <img src={require("./images/window-close.png")} alt="close" className="w-11 absolute top-4 right-4 z-20" />
             </button>
         </Link>
-        <form className={"bookForm bg-gray-200 p-5 z-10 h-screen w-screen absolute top-0 flex flex-col justify-center"} onSubmit={handleSubmit}>
+        <form className={"bookForm bg-gray-200 p-5 z-10 h-screen w-screen absolute top-0 flex flex-col justify-center"} onSubmit={e => {
+            e.preventDefault();
+            handleSubmit();
+            }}>
             <label htmlFor="title" className="block mb-2 text-xl">Title: </label>
             <input type="text" className="block mb-2 p-1 rounded-sm" required value={title} onChange={e => setTitle(e.target.value)} id="title"/>
             <label htmlFor="author" className="block mb-2 text-xl">Author: </label>
@@ -42,8 +45,8 @@ const Form = () => {
                 <option value="Read">I have read this book</option>
                 <option value="Unread">I have not read this book</option>
             </select>
-            { !isPending && <button type="submit" className="p-2 bg-blue-600 text-gray-100 rounded-sm mt-6 w-7/12 self-center">Add Book</button>}
-            { isPending && <button disabled>Adding Book</button>}
+            { !isPending && <button type="submit" className="p-2 bg-blue-600 text-gray-100 rounded-sm mt-6 w-7/12 self-center">Submit</button>}
+            { isPending && <button disabled>Processing</button>}
         </form>
     </div>
     );
