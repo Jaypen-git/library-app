@@ -16,9 +16,15 @@ const BookList = ({books}) => {
                     <div key={book.id} className={book.id % 2 === 0 ? "grid grid-cols-6 justify-center items-center py-4 bg-blue-50" : "grid grid-cols-6 justify-center items-center py-4"}
                     id={`book-${book.id}`} onClick={() => {
                         let target = document.querySelector(`#book-${book.id}`).querySelector('.details');
+                        let mainTitle = document.querySelector(`#book-${book.id}`).querySelector('.main-title');
                         target.classList.toggle('hidden');
+                        if (mainTitle.innerText !== ''){
+                            mainTitle.innerText = '';
+                        } else {
+                            mainTitle.innerText  = book.title;
+                        }
                     }}>
-                        <p className="col-span-4 text-3xl font-medium px-1.5 ml-2">{ book.title }</p>
+                        <p className="col-span-4 text-3xl font-medium px-1.5 ml-2 main-title">{ book.title }</p>
                         <Link to={"/edit/" + book.id}>
                             <button className="col-span-1 bg-blue-600 m-2 w-12 h-12 text-center rounded flex justify-center align-center">
                                 <img src={require("./images/pencil.png")} alt="edit" className="w-10 h-10 my-1"/>
@@ -28,6 +34,7 @@ const BookList = ({books}) => {
                             <img src={require("./images/delete.png")} alt="delete" className="w-10 h-10 my-1"/>
                         </button>
                         <div className="details hidden col-span-6 text-center">
+                            <p className="col-span-4 text-2xl font-medium px-1.5 ml-2">{ `Title: ${book.title}` }</p>
                             <p className="col-span-4 text-2xl font-medium px-1.5 ml-2">{ `Author: ${book.author}` }</p>
                             <p className="col-span-4 text-2xl font-medium px-1.5 ml-2">{ `Pages: ${book.pages}` }</p>
                             <p className="col-span-4 text-2xl font-medium px-1.5 ml-2">{ `Status: ${book.status}` }</p>
