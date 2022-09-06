@@ -33,7 +33,7 @@ const BookList = ({books}) => {
                         <button className="col-span-1 bg-red-600 m-2 w-12 h-12 text-center rounded flex justify-center align-center" onClick={e => {handleDelete(e.target.parentNode.parentNode.id)}}>
                             <img src={require("./images/delete.png")} alt="delete" className="w-10 h-10 my-1"/>
                         </button>
-                        <div className="details hidden col-span-6 text-center">
+                        <div className="details hidden col-span-6">
                             <p className="col-span-4 text-2xl font-medium px-1.5 ml-2">{ `Title: ${book.title}` }</p>
                             <p className="col-span-4 text-2xl font-medium px-1.5 ml-2">{ `Author: ${book.author}` }</p>
                             <p className="col-span-4 text-2xl font-medium px-1.5 ml-2">{ `Pages: ${book.pages}` }</p>
