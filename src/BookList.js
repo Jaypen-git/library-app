@@ -35,7 +35,7 @@ const BookList = ({books}) => {
                         if (mainTitle.innerText !== ''){
                             mainTitle.innerText = '';
                         } else {
-                            mainTitle.innerText  = book.title;
+                            book.title.length > 14 ? mainTitle.innerText = shortenTitle(book.title) : mainTitle.innerText = book.title
                         }
                     }}>
                         {console.log(book.title.length)}
