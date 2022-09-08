@@ -18,7 +18,7 @@ const Form = ({ url, method }) => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(book)
         }).then(() => {
-            console.log('added');
+            // console.log('added');
             setIsPending(false);
         })
     }
@@ -30,7 +30,7 @@ const Form = ({ url, method }) => {
                 <img src={require("./images/window-close.png")} alt="close" className="w-11 absolute top-4 right-4 z-20" />
             </button>
         </Link>
-        <form className={"bookForm bg-gray-200 p-5 z-10 h-screen w-screen absolute top-0 flex flex-col justify-center"} onSubmit={e => {
+        <form className="bookForm bg-gray-200 p-5 z-10 h-screen w-screen absolute top-0 flex flex-col justify-center" onSubmit={e => {
             e.preventDefault();
             handleSubmit();
             }}>

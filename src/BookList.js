@@ -38,7 +38,7 @@ const BookList = ({books}) => {
                             book.title.length > 14 ? mainTitle.innerText = shortenTitle(book.title) : mainTitle.innerText = book.title
                         }
                     }}>
-                        {console.log(book.title.length)}
+                        {/* {console.log(book.title.length)} */}
                         <p className="col-span-4 text-3xl font-medium px-1.5 ml-2 main-title">
                             { book.title.length > 14 ? shortenTitle(book.title) : book.title }
                         </p>
