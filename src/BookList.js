@@ -11,16 +11,43 @@ const BookList = ({books}) => {
     }
 
     const shortenTitle = (title) => {
+        let newString = '';
         let titleChars = Array.from(title);
-        while (titleChars.length > 14) {
-            titleChars.pop();
-        }
-        for (let i = 0; i < titleChars.length; i++) {
-            if (i === 13 || i === 12 || i === 11){
-                titleChars[i] = '.';
+
+        if (window.innerWidth >= 640 && window.innerWidth < 768) {
+            while (titleChars.length > 18) {
+                titleChars.pop();
             }
+            // for (let i = 0; i < titleChars.length; i++) {
+            //     if (i === 17 || i === 16 || i === 15){
+            //         titleChars[i] = '.';
+            //     }
+            // }
+        } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
+            while (titleChars.length > 24) {
+                titleChars.pop();
+            }
+            // for (let i = 0; i < titleChars.length; i++) {
+            //     if (i === 23 || i === 22 || i === 21){
+            //         titleChars[i] = '.';
+            //     }
+            // }
+        } else {
+            while (titleChars.length > 14) {
+                titleChars.pop();
+            }
+            // for (let i = 0; i < titleChars.length; i++) {
+            //     if (i === 13 || i === 12 || i === 11){
+            //         titleChars[i] = '.';
+            //     }
+            // }
         }
-        let newString = titleChars.join('');
+        // Don't need to loop through the whole array, just grab the last 3 items
+        titleChars[titleChars.length - 1] = '.';
+        titleChars[titleChars.length - 2] = '.';
+        titleChars[titleChars.length - 3] = '.';
+        newString = titleChars.join('');
+        console.log(newString)
         return newString;
     }
 
