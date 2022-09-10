@@ -18,36 +18,21 @@ const BookList = ({books}) => {
             while (titleChars.length > 18) {
                 titleChars.pop();
             }
-            // for (let i = 0; i < titleChars.length; i++) {
-            //     if (i === 17 || i === 16 || i === 15){
-            //         titleChars[i] = '.';
-            //     }
-            // }
         } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
             while (titleChars.length > 24) {
                 titleChars.pop();
             }
-            // for (let i = 0; i < titleChars.length; i++) {
-            //     if (i === 23 || i === 22 || i === 21){
-            //         titleChars[i] = '.';
-            //     }
-            // }
         } else {
             while (titleChars.length > 14) {
                 titleChars.pop();
             }
-            // for (let i = 0; i < titleChars.length; i++) {
-            //     if (i === 13 || i === 12 || i === 11){
-            //         titleChars[i] = '.';
-            //     }
-            // }
         }
         // Don't need to loop through the whole array, just grab the last 3 items
         titleChars[titleChars.length - 1] = '.';
         titleChars[titleChars.length - 2] = '.';
         titleChars[titleChars.length - 3] = '.';
         newString = titleChars.join('');
-        console.log(newString)
+        console.log(newString);
         return newString;
     }
 
@@ -56,6 +41,7 @@ const BookList = ({books}) => {
             {books.map(book => (
                     <div key={book.id} className={book.id % 2 === 0 ? "grid grid-cols-6 justify-center items-center py-4 bg-blue-50" : "grid grid-cols-6 justify-center items-center py-4"}
                     id={`book-${book.id}`} onClick={() => {
+                        // ideally I don't need to do this
                         let target = document.querySelector(`#book-${book.id}`).querySelector('.details');
                         let mainTitle = document.querySelector(`#book-${book.id}`).querySelector('.main-title');
                         target.classList.toggle('hidden');
@@ -67,6 +53,7 @@ const BookList = ({books}) => {
                     }}>
                         {/* {console.log(book.title.length)} */}
                         <p className="col-span-4 text-3xl sm:text-4xl font-medium px-1.5 ml-2 main-title">
+                            {/* this should be named by the mainTitle state */}
                             { book.title.length > 14 ? shortenTitle(book.title) : book.title }
                         </p>
                         <Link to={"/edit/" + book.id}>
