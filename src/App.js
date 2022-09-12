@@ -6,11 +6,12 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import EditBook from './EditBook';
 
 function App() {
+  
   return (
     <BrowserRouter>
         <div className="App h-screen text-gray-700 text-lg">
           <Header />
-          <div>
+          <div className='mobile'>
             {/* Need to use react router to make a mobile menu */}
             <Switch>
               <Route exact path="/">
@@ -23,6 +24,11 @@ function App() {
                 <EditBook />
               </Route>
             </Switch>
+          </div>
+          <div className='pc hidden'>
+            <Header />
+            <Home />
+            <Form url={'http://localhost:8000/library'} method={'POST'}/>
           </div>
         </div>
     </BrowserRouter>

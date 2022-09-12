@@ -18,20 +18,24 @@ const BookList = ({books}) => {
         })
     }
 
-    const shortenTitle = (title) => {
+    const FormatTitle = (title) => {
         let newString = '';
         let titleChars = Array.from(title);
 
-        if (WindowSize >= 640 && WindowSize < 768) {
+        if (WindowSize < 640) {
+            while (titleChars.length > 14) {
+                titleChars.pop();
+            }
+        } else if (WindowSize >= 640 && WindowSize < 768) {
+            while (titleChars.length > 16) {
+                titleChars.pop();
+            }
+        } else if (WindowSize >= 768 && WindowSize < 1000) {
             while (titleChars.length > 18) {
                 titleChars.pop();
             }
-        } else if (WindowSize >= 768 && WindowSize < 1024) {
-            while (titleChars.length > 24) {
-                titleChars.pop();
-            }
         } else {
-            while (titleChars.length > 14) {
+            while (titleChars.length > 30) {
                 titleChars.pop();
             }
         }
@@ -56,22 +60,24 @@ const BookList = ({books}) => {
                         if (!target.classList.contains('hidden')){
                             mainTitle.innerText = '';
                         } else {
-                            book.title.length > 14 ? mainTitle.innerText = shortenTitle(book.title) : mainTitle.innerText = book.title
+                            book.title.length > 14 ? mainTitle.innerText = FormatTitle(book.title) : mainTitle.innerText = book.title
                         }
                     }}>
                         {/* {console.log(book.title.length)} */}
                         <p className="col-span-4 text-3xl sm:text-4xl font-medium px-1.5 ml-2 main-title">
                             {/* this should be named by the mainTitle state */}
-                            { book.title.length > 14 ? shortenTitle(book.title) : book.title }
+                            { book.title.length > 14 ? FormatTitle(book.title) : book.title }
                         </p>
                         <Link to={"/edit/" + book.id}>
-                            <button className="col-span-1 bg-blue-600 m-2 w-12 h-12 sm:w-14 sm:h-14 text-center rounded flex justify-center align-center">
+                            {WindowSize < 960 && <button className="col-span-1 bg-blue-600 m-2 w-12 h-12 sm:w-14 sm:h-14 text-center rounded flex justify-center align-center">
                                 <img src={require("./images/pencil.png")} alt="edit" className="w-10 h-10 sm:w-12 sm:h-12 my-1"/>
-                            </button>
+                            </button>}
+                            {WindowSize >= 960 && <button className='bg-blue-600 text-gray-50 text-3xl w-32 h-14 rounded font-semibold'>Edit</button>}
                         </Link>
-                        <button className="col-span-1 bg-red-600 m-2 w-12 h-12 sm:w-14 sm:h-14 text-center rounded flex justify-center align-center" onClick={e => {handleDelete(e.target.parentNode.parentNode.id)}}>
+                        {WindowSize < 960 && <button className="col-span-1 bg-red-600 m-2 w-12 h-12 sm:w-14 sm:h-14 text-center rounded flex justify-center align-center" onClick={e => {handleDelete(e.target.parentNode.parentNode.id)}}>
                             <img src={require("./images/delete.png")} alt="delete" className="w-10 h-10 sm:w-12 sm:h-12 my-1"/>
-                        </button>
+                        </button>}
+                        {WindowSize >= 960 && <button className='bg-red-600 text-gray-50 text-3xl w-32 h-14 rounded font-semibold'>Delete</button>}
                         <div className="details hidden col-span-6">
                             <p className="col-span-4 text-2xl sm:text-3xl font-medium px-1.5 m-2 sm:m-3">{ `Title: ${book.title}` }</p>
                             <p className="col-span-4 text-2xl sm:text-3xl font-medium px-1.5 m-2 sm:m-3">{ `Author: ${book.author}` }</p>
