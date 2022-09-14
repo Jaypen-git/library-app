@@ -12,15 +12,15 @@ function App() {
   useEffect(() => {
     window.addEventListener('resize', () => {
       setWindowSize(window.innerWidth);
-      // console.log(WindowSize);
+      // console.log(WinowSize);
     });
-  }, [WindowSize])
+  }, [WindowSize]);
 
   return (
     <BrowserRouter>
         <div className="App h-screen text-gray-700 text-lg">
           <Header />
-          {WindowSize < 960 && <div className='mobile'>
+          <div>
             {/* Need to use react router to make a mobile menu */}
             <Switch>
               <Route exact path="/">
@@ -33,11 +33,7 @@ function App() {
                 <EditBook />
               </Route>
             </Switch>
-          </div>}
-          {WindowSize >= 960 && <div className='pc container flex w-screen'>
-            <Form url={'http://localhost:8000/library'} method={'POST'} className={'Form'} />
-            <Home className={'content'} />
-          </div>}
+          </div>
         </div>
     </BrowserRouter>
   );

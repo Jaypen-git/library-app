@@ -1,32 +1,11 @@
 {
   "library": [
     {
-      "id": 1,
       "title": "Book 1",
       "author": "Author 1",
-      "pages": "310",
-      "status": "Read"
-    },
-    {
-      "id": 2,
-      "title": "Book 2 Revised",
-      "author": "Author 2",
-      "pages": "270",
-      "status": "Unread"
-    },
-    {
-      "title": "Book 3",
-      "author": "Author 3",
-      "pages": "370",
+      "pages": "290",
       "status": "Read",
-      "id": 3
-    },
-    {
-      "title": "Really Really Really Really Really Really",
-      "author": "Author 4",
-      "pages": "400",
-      "status": "Read",
-      "id": 4
+      "id": 1
     }
   ]
 }
