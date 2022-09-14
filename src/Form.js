@@ -6,10 +6,48 @@ const Form = ({ url, method }) => {
     const [author, setAuthor] = useState('');
     const [pages, setPages] = useState('');
     const [status, setStatus] = useState('Read');
+
+    const [defaultTitle, setDefaultTitle] = useState('');
+    const [defaultAuthor, setDefaultAuthor] = useState('');
+    const [defaultPages, setDefaultPages] = useState('');
+    const [defaultStatus, setDefaultStatus] = useState('');
+
     const [isPending, setIsPending] = useState(false);
+
+    if (method === 'PATCH') {
+        fetch(url)
+            .then(res => {
+                if (!res) {
+                    throw Error("Couldn't fetch the data");
+                }
+                return res.json();
+            })
+            .then(data => {
+                setDefaultTitle(data.title);
+                setDefaultAuthor(data.author);
+                setDefaultPages(data.pages);
+                setDefaultStatus(data.status);
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
+    }
 
     const handleSubmit = () => {
         const book = { title, author, pages, status };
+
+        if (title === '' ) {
+            book.title = defaultTitle;
+        }
+        if (author === '') {
+            book.author = defaultAuthor;
+        }
+        if (pages === '') {
+            book.pages = defaultPages;
+        }
+        if (status === '') {
+            book.status = defaultStatus;
+        }
 
         setIsPending(true);
 
@@ -35,13 +73,13 @@ const Form = ({ url, method }) => {
             handleSubmit();
             }}>
             <label htmlFor="title" className="block mb-2 sm:mb-4 text-xl sm:text-3xl lg:text-2xl">Title: </label>
-            <input type="text" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" required value={title} onChange={e => setTitle(e.target.value)} id="title"/>
+            <input type="text" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" defaultValue={defaultTitle} required onChange={e => setTitle(e.target.value)} id="title"/>
             <label htmlFor="author" className="block mb-2 sm:mb-4 text-xl sm:text-3xl lg:text-2xl">Author: </label>
-            <input type="text" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" required value={author} onChange={e => setAuthor(e.target.value)} id="author" />
+            <input type="text" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" defaultValue={defaultAuthor} required onChange={e => setAuthor(e.target.value)} id="author" />
             <label htmlFor="pages" className="block mb-2 sm:mb-4 text-xl sm:text-3xl lg:text-2xl">Pages: </label>
-            <input type="text" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" required value={pages} onChange={e => setPages(e.target.value)} id="pages" />
+            <input type="text" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" defaultValue={defaultPages} required onChange={e => setPages(e.target.value)} id="pages" />
             <label htmlFor="status" className="block mb-2 sm:mb-4 text-xl sm:text-3xl lg:text-2xl">Read? </label>
-            <select name="status" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" required value={status} onChange={e =>  setStatus(e.target.value)} id="status">
+            <select name="status" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" defaultValue={defaultStatus} required onChange={e =>  setStatus(e.target.value)} id="status">
                 <option value="Read">I have read this book</option>
                 <option value="Unread">I have not read this book</option>
             </select>
