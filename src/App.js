@@ -21,7 +21,7 @@ function App() {
     <BrowserRouter>
       <div className="App h-screen text-gray-700 text-lg">
         <Header />
-        {WindowSize < 960 && <div className='mobile'>
+        {WindowSize < 1024 && <div className='mobile'>
           <Switch>
             <Route exact path="/">
               <Home />
@@ -34,7 +34,7 @@ function App() {
             </Route>
           </Switch>
         </div>}
-        {WindowSize >= 960 && <div className='pc container flex'>
+        {WindowSize >= 1024 && <div className='pc container flex'>
           <Switch>
             <Route exact path="/">
               <Nav />
