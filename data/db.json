@@ -6,6 +6,13 @@
       "pages": "290",
       "status": "Read",
       "id": 1
+    },
+    {
+      "title": "Book 2",
+      "author": "Author 2",
+      "pages": "310",
+      "status": "Unread",
+      "id": 2
     }
   ]
 }
