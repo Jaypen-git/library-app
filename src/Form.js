@@ -62,13 +62,14 @@ const Form = ({ url, method }) => {
     }
 
     return ( 
-    <div>
+    <div className="sidebar lg:bg-gray-200 lg:flex lg:flex-col lg:h-full">
         <Link to="/">
             <button className="lg:hidden">
                 <img src={require("./images/window-close.png")} alt="close" className="w-11 sm: w-14 absolute top-4 right-4 z-20" />
             </button>
+            <p className="text-right text-2xl m-3">&larr; Go Back</p>
         </Link>
-        <form className="Form bg-gray-200 p-5 sm: p-8 lg:py-0 z-10 h-screen lg:h-full w-screen lg:w-full absolute lg:static top-0 flex flex-col justify-center" onSubmit={e => {
+        <form className="sidebar p-5 sm: p-8 lg:py-0 z-10 h-screen lg:h-full w-screen lg:w-full absolute lg:static top-0 flex flex-col justify-center" onSubmit={e => {
             e.preventDefault();
             handleSubmit();
             }}>

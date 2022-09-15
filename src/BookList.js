@@ -50,9 +50,9 @@ const BookList = ({books}) => {
     }
 
     return ( 
-        <div className=''>
-            {books.map(book => (
-                <div key={book.id} className={book.id % 2 === 0 ? "grid grid-cols-6 justify-center items-center py-4 sm:py-10 px-2 sm:px-8 bg-blue-50" : "grid grid-cols-6 justify-center items-center py-4 sm:py-10 px-2 sm:px-8"}
+        <div>
+            {books.map((book, index) => (
+                <div key={book.id} className={index + 1 % 2 === 0 ? "grid grid-cols-6 justify-center items-center py-4 sm:py-10 px-2 sm:px-8 bg-blue-50" : "grid grid-cols-6 justify-center items-center py-4 sm:py-10 px-2 sm:px-8"}
                 id={book.id} onClick={() => {
                     // ideally I don't need to do this
                     let target = document.getElementById(`${book.id}`).querySelector('.details');
@@ -73,7 +73,7 @@ const BookList = ({books}) => {
                         {WindowSize < 960 && <button className="col-span-1 bg-blue-600 m-2 w-12 h-12 sm:w-16 sm:h-16 text-center rounded flex justify-center align-center">
                             <img src={require("./images/pencil.png")} alt="edit" className="w-10 h-10 sm:w-14 sm:h-14 my-1"/>
                         </button>}
-                        {WindowSize >= 960 && <button className='bg-blue-600 text-gray-50 text-3xl w-32 h-14 rounded font-semibold'>Edit</button>}
+                        {WindowSize >= 960 && <button className='bg-blue-600 text-gray-50 text-3xl w-32 h-14 rounded font-semibold mx-4'>Edit</button>}
                     </Link>
                     {WindowSize < 960 && <button className="col-span-1 bg-red-600 m-2 w-12 h-12 sm:w-16 sm:h-16 text-center rounded flex justify-center align-center" onClick={e => {handleDelete(e.target.parentNode.parentNode.id)}}>
                         <img src={require("./images/delete.png")} alt="delete" className="w-10 h-10 sm:h-14 sm:w-14 my-1"/>

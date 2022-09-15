@@ -2,12 +2,12 @@
   height: calc(100vh - 80px);
 }
 
-.Form {
+.sidebar {
   flex: 2;
 }
 
 .content {
-  flex: 5;
+  flex: 7;
 }
 
 table {
