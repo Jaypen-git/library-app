@@ -67,24 +67,24 @@ const Form = ({ url, method }) => {
             <button className="lg:hidden">
                 <img src={require("./images/window-close.png")} alt="close" className="w-11 sm: w-14 absolute top-4 right-4 z-20" />
             </button>
-            <p className="text-right text-2xl m-3">&larr; Go Back</p>
+            <p className="text-right text-2xl m-3 hover:text-pink-600 transition ease-out duration-300">&larr; Go Back</p>
         </Link>
         <form className="sidebar p-5 sm: p-8 lg:py-0 z-10 h-screen lg:h-full w-screen lg:w-full absolute lg:static top-0 flex flex-col justify-center" onSubmit={e => {
             e.preventDefault();
             handleSubmit();
             }}>
-            <label htmlFor="title" className="block mb-2 sm:mb-4 text-xl sm:text-3xl lg:text-2xl">Title: </label>
-            <input type="text" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" defaultValue={defaultTitle} required onChange={e => setTitle(e.target.value)} id="title"/>
-            <label htmlFor="author" className="block mb-2 sm:mb-4 text-xl sm:text-3xl lg:text-2xl">Author: </label>
-            <input type="text" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" defaultValue={defaultAuthor} required onChange={e => setAuthor(e.target.value)} id="author" />
-            <label htmlFor="pages" className="block mb-2 sm:mb-4 text-xl sm:text-3xl lg:text-2xl">Pages: </label>
-            <input type="text" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" defaultValue={defaultPages} required onChange={e => setPages(e.target.value)} id="pages" />
-            <label htmlFor="status" className="block mb-2 sm:mb-4 text-xl sm:text-3xl lg:text-2xl">Read? </label>
-            <select name="status" className="block mb-2 p-1 sm:p-2 rounded-sm sm:text-2xl lg:text-xl" defaultValue={defaultStatus} required onChange={e =>  setStatus(e.target.value)} id="status">
+            <label htmlFor="title" className="formLabel">Title: </label>
+            <input type="text" className="formInput" defaultValue={defaultTitle} required onChange={e => setTitle(e.target.value)} id="title"/>
+            <label htmlFor="author" className="formLabel">Author: </label>
+            <input type="text" className="formInput" defaultValue={defaultAuthor} required onChange={e => setAuthor(e.target.value)} id="author" />
+            <label htmlFor="pages" className="formLabel">Pages: </label>
+            <input type="text" className="formInput" defaultValue={defaultPages} required onChange={e => setPages(e.target.value)} id="pages" />
+            <label htmlFor="status" className="formLabel">Read? </label>
+            <select name="status" className="formInput" defaultValue={defaultStatus} required onChange={e =>  setStatus(e.target.value)} id="status">
                 <option value="Read">I have read this book</option>
                 <option value="Unread">I have not read this book</option>
             </select>
-            { !isPending && <button type="submit" className="p-2 bg-blue-600 text-gray-100 rounded-sm sm:text-2xl mt-6 w-7/12 self-center">Submit</button>}
+            { !isPending && <button type="submit" className="p-2 bg-blue-600 hover:bg-blue-500 text-gray-100 rounded-sm sm:text-2xl mt-6 w-7/12 self-center transition ease-linear duration-300">Submit</button>}
             { isPending && <button disabled>Processing</button>}
         </form>
     </div>
