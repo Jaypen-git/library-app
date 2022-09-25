@@ -13,6 +13,8 @@ const Form = ({ url, method }) => {
     const [defaultStatus, setDefaultStatus] = useState('');
 
     const [isPending, setIsPending] = useState(false);
+    // to check whether user is editing a book or adding a book
+    const [isEditing, setIsEditing] = useState(false);
 
     if (method === 'PATCH') {
         fetch(url)
@@ -27,6 +29,7 @@ const Form = ({ url, method }) => {
                 setDefaultAuthor(data.author);
                 setDefaultPages(data.pages);
                 setDefaultStatus(data.status);
+                setIsEditing(true);
             })
             .catch(err => {
                 console.log(err.message);
@@ -67,7 +70,8 @@ const Form = ({ url, method }) => {
             <button className="lg:hidden">
                 <img src={require("./images/window-close.png")} alt="close" className="w-11 sm: w-14 absolute top-4 right-4 z-20" />
             </button>
-            <p className="text-right text-2xl m-3 hover:text-pink-600 transition ease-out duration-300">&larr; Go Back</p>
+            {isEditing && <p className="text-right text-xl m-3 hover:text-pink-600 transition ease-out duration-300">Cancel</p>}
+            {!isEditing && <p className="text-right text-xl m-3 hover:text-pink-600 transition ease-out duration-300">Clear Form</p>}
         </Link>
         <form className="sidebar p-5 sm: p-8 lg:py-0 z-10 h-screen lg:h-full w-screen lg:w-full absolute lg:static top-0 flex flex-col justify-center" onSubmit={e => {
             e.preventDefault();

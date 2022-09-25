@@ -1,4 +1,27 @@
 {
+  "users": [
+    {
+      "username": "User1",
+      "email": "email@mail.com",
+      "password": "password",
+      "library": [
+        {
+          "title": "Book 1",
+          "author": "Author 1",
+          "pages": "290",
+          "status": "Read",
+          "id": 1
+        },
+        {
+          "title": "Book 2",
+          "author": "Author 2",
+          "pages": "310",
+          "status": "Unread",
+          "id": 2
+        }
+      ]
+    }
+  ],
   "library": [
     {
       "title": "Book 1",
@@ -8,10 +31,10 @@
       "id": 1
     },
     {
-      "title": "Book 2",
+      "title": "Book 2 With A Really Long Title",
       "author": "Author 2",
       "pages": "310",
-      "status": "Unread",
+      "status": "Read",
       "id": 2
     }
   ]

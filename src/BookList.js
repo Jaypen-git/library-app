@@ -47,7 +47,7 @@ const BookList = ({books}) => {
                 titleChars[titleChars.length - 3] = '.';
             }
         } else {
-            while (titleChars.length > 26) {
+            while (titleChars.length > 21) {
                 titleChars.pop();
                 titleChars[titleChars.length - 1] = '.';
                 titleChars[titleChars.length - 2] = '.';

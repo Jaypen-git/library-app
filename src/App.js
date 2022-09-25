@@ -5,7 +5,6 @@ import Header from './Header';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import EditBook from './EditBook';
 import { useState, useEffect } from 'react';
-import Nav from './Nav';
 
 function App() {
   const [WindowSize, setWindowSize] = useState(window.innerWidth);
@@ -37,12 +36,9 @@ function App() {
         {WindowSize >= 1024 && <div className='pc container flex'>
           <Switch>
             <Route exact path="/">
-              <Nav />
-            </Route>
-            <Route path="/form">
               <Form url={'http://localhost:8000/library'} method={'POST'}/>
             </Route>
-            <Route path="/edit/:id">
+            <Route exact path="/edit/:id">
               <EditBook />
             </Route>
           </Switch>
